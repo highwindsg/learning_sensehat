@@ -1,8 +1,9 @@
 from sense_hat import SenseHat
 import time
-from time import asctime
+from time import asctime    #to bring in the current time function
 
-sense = SenseHat()
+sense = SenseHat()  #establishing a communication between the Sense Hat
+                    #and the porogram.
 
 while True:
     #temp = round(sense.get_temperature()*1.8 +32)  # Round off temp to Fahrenheit as a integer.
