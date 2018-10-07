@@ -12,8 +12,8 @@ while True:
     y = acceleration["y"]
     z = acceleration["z"]
 
-    x = abs(x)
-    y = abs(y)
+    x = abs(x)  # Absolute takes only one argument, irregardless if the value
+    y = abs(y)  # returned is an integer, floating point or a complex number.
     z = abs(z)
 
     if x > 1 or y > 1 or z > 1:
