@@ -20,7 +20,7 @@ while True:
 #        sense.show_letter("!", red)
         message = " This chair is occupied. "
         log = open('chair.txt', "a")    # Open the file in appending mode.
-        now = str(asctime())
+        now = str(asctime())            # Current date/time assign to var 'now'.
         log.write(now + '' + message + '\n' )   # Starts writing current date
                                                 # and time with the message.
         print(message)      # Optional. Prints output to console screen.
