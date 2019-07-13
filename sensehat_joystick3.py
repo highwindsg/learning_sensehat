@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+"""
+Create functions to fill the LED matrix with four different colours.
+Add triggers to call one function for each possible direction in which the
+joystick can be pressed.
+"""
+
 from sense_hat import SenseHat
 
 
@@ -18,7 +24,7 @@ def green():
 def yellow():
     sense.clear(255, 255, 0) # From sense, use the clear method and set yellow color.
 
-# Tell the program which function to associate with which direction.
+# Tell the program to trigger which function to associate with which direction.
 
 # From sense, get the stick attrib and for direction_up, set it to red.
 sense.stick.direction_up = red
