@@ -3,7 +3,9 @@
 from sense_hat import SenseHat
 from time import sleep
 
+
 sense = SenseHat()
+sense.clear()
 
 w = (150, 150, 150)    # w means white
 b = (0, 0, 255)        # b means blue
@@ -20,8 +22,15 @@ image = [
     e,e,e,e,e,e,e,e
     ]
 
-sense.set_pixels(image)
+try:
+    sense.set_pixels(image)
 
-while True:
-    sleep(1)
-    sense.flip_h()
+    while True:
+        sleep(1)
+        sense.flip_h()
+        
+except KeyboardInterrupt:
+    pass
+
+sense.clear()
+

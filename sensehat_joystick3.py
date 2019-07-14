@@ -10,6 +10,7 @@ from sense_hat import SenseHat
 
 
 sense = SenseHat()
+sense.clear()
 
 # Define the functions.
 def red():
@@ -37,5 +38,11 @@ sense.stick.direction_right = yellow
 # From sense, get the stick attrib and for direction_middle, set it to clear all.
 sense.stick.direction_middle = sense.clear
 
-while True:
-    pass # This keeps the program running to receive joystick events.
+try:
+    while True:
+        pass # This keeps the program running to receive joystick events.
+
+except KeyboardInterrupt:
+    pass
+
+sense.clear()

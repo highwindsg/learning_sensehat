@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 from sense_hat import SenseHat
+from time import sleep
+
 
 sense = SenseHat()
+sense.clear()
 
 # Define some colours
 g = (0, 255, 0) # Green
@@ -19,5 +22,12 @@ creeper_pixels = [
     g, g, b, g, g, b, g, g
 ]
 
-# Display these colours on the LED matrix
-sense.set_pixels(creeper_pixels)
+try:
+    while True:
+        # Display these colours on the LED matrix
+        sense.set_pixels(creeper_pixels)
+
+except KeyboardInterrupt:
+    pass
+
+sense.clear()

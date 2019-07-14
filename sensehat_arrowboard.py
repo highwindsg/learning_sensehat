@@ -7,6 +7,7 @@ from random import choice
 
 # Create a sense obj.
 sense = SenseHat()
+sense.clear()
 
 # Set up the colours of white, green, red and empty.
 w = (150, 150, 150)
@@ -57,59 +58,65 @@ score = 0
 angle = 0
 play = True
 
-sense.show_message("Keep the arrow pointing up", scroll_speed=0.05, text_colour=[100,100,100])
+try:
+    sense.show_message("Keep the arrow pointing up", scroll_speed=0.05, text_colour=[100,100,100])
 
-# WHILE play == True
-while play:
-    # Choose a new random angle
-    last_angle = angle
-    while angle == last_angle:
-        angle = choice([0, 90, 180, 270])
+    # WHILE play == True
+    while play:
+        # Choose a new random angle
+        last_angle = angle
+        while angle == last_angle:
+            angle = choice([0, 90, 180, 270])
         
-    sense.set_rotation(angle)
+        sense.set_rotation(angle)
     
-    # Display the white arrow
-    sense.set_pixels(arrow)
+        # Display the white arrow
+        sense.set_pixels(arrow)
     
-    # SLEEP for current pause length
-    sleep(pause)
+        # SLEEP for current pause length
+        sleep(pause)
     
-    acceleration = sense.get_accelerometer_raw
-    x = acceleration["x"]
-    y = acceleration["y"]
-    z = acceleration["z"]
+        acceleration = sense.get_accelerometer_raw()
+        x = acceleration["x"]
+        y = acceleration["y"]
+        z = acceleration["z"]
     
-    x = round(x, 0)
-    y = round(y, 0)
+        x = round(x, 0)
+        y = round(y, 0)
     
-    print(angle)
-    print(x)
-    print(y)
+        print(angle)
+        print(x)
+        print(y)
     
-    # IF orientation matches the arrow...
-    if x == -1 and angle == 180:
-        # ADD a point and turn the arrow green
-        sense.set_pixels(arroq_green)
-        score += 1
-    elif x == 1 and angle == 0:
-        sense.set_pixels(arrow_green)
-        score += 1
-    elif y == -1 and angle == 90:
-        sense.set_pixels(arrow_green)
-        score += 1
-    elif y == 1 and angle == 270:
-        sense.set_pixels(arrow_green)
-        score += 1
-    else:
-        # SET play to 'False' and DISPLAY the red arrow
-        sense.set_pixels(arrow_red)
-        play = False
+        # IF orientation matches the arrow...
+        if x == -1 and angle == 180:
+            # ADD a point and turn the arrow green
+            sense.set_pixels(arroq_green)
+            score += 1
+        elif x == 1 and angle == 0:
+            sense.set_pixels(arrow_green)
+            score += 1
+        elif y == -1 and angle == 90:
+            sense.set_pixels(arrow_green)
+            score += 1
+        elif y == 1 and angle == 270:
+            sense.set_pixels(arrow_green)
+            score += 1
+        else:
+            # SET play to 'False' and DISPLAY the red arrow
+            sense.set_pixels(arrow_red)
+            play = False
     
-    # Shorten the pause duration slightly
-    pause = pause * 0.95
+        # Shorten the pause duration slightly
+        pause = pause * 0.95
     
-    # Pause before the next arrow
-    sleep(0.5)
+        # Pause before the next arrow
+        sleep(0.5)
     
-# When loop is exited, display a message with the score
-msg = "Your score was %s" % score
+    # When loop is exited, display a message with the score
+    msg = "Your score was %s" % score
+
+except KeyboardInterrupt:
+    pass
+
+sense.clear()
